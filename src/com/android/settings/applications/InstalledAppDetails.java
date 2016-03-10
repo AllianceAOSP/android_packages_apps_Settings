@@ -443,7 +443,7 @@ public class InstalledAppDetails extends AppInfoBase
         final View appSnippet = mHeader.findViewById(R.id.app_snippet);
         mState.ensureIcon(mAppEntry);
         setupAppSnippet(appSnippet, mAppEntry.label, mAppEntry.icon,
-                pkgInfo != null ? pkgInfo.versionName : null);
+                pkgInfo != null ? pkgInfo.versionName : null, pkgInfo.packageName);
     }
 
     private boolean signaturesMatch(String pkg1, String pkg2) {
@@ -766,8 +766,8 @@ public class InstalledAppDetails extends AppInfoBase
     }
 
     public static void setupAppSnippet(View appSnippet, CharSequence label, Drawable icon,
-            CharSequence versionName) {
-        LayoutInflater.from(appSnippet.getContext()).inflate(R.layout.widget_text_views,
+            CharSequence versionName, String packageName) {
+        LayoutInflater.from(appSnippet.getContext()).inflate(R.layout.widget_text_views_vertical,
                 (ViewGroup) appSnippet.findViewById(android.R.id.widget_frame));
 
         ImageView iconView = (ImageView) appSnippet.findViewById(android.R.id.icon);
@@ -777,6 +777,9 @@ public class InstalledAppDetails extends AppInfoBase
         labelView.setText(label);
         // Version number of application
         TextView appVersion = (TextView) appSnippet.findViewById(R.id.widget_text1);
+        // Package name of application
+        TextView appPackageName = (TextView) appSnippet.findViewById(R.id.widget_text2);
+        appPackageName.setText(packageName);
 
         if (!TextUtils.isEmpty(versionName)) {
             appVersion.setSelected(true);
