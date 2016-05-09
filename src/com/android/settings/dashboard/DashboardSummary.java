@@ -42,6 +42,8 @@ import com.android.settings.HelpUtils;
 import com.android.settings.InstrumentedFragment;
 import com.android.settings.R;
 import com.android.settings.SettingsActivity;
+import com.android.internal.util.AllianceUtils;
+import android.provider.Settings;
 
 import java.util.List;
 
@@ -148,7 +150,7 @@ public class DashboardSummary extends InstrumentedFragment {
 
             TextView categoryLabel = (TextView) categoryView.findViewById(R.id.category_title);
             categoryLabel.setText(category.getTitle(res));
-
+            AllianceUtils.colorizeText(context,categoryLabel, Settings.System.SETTINGS_CATEGORY_TEXT_COLOR, 0xff009688);
             ViewGroup categoryContent =
                     (ViewGroup) categoryView.findViewById(R.id.category_content);
 
@@ -190,20 +192,26 @@ public class DashboardSummary extends InstrumentedFragment {
             } catch (NameNotFoundException | Resources.NotFoundException e) {
                 tileIcon.setImageDrawable(null);
                 tileIcon.setBackground(null);
+
             }
         } else if (tile.iconRes > 0) {
             tileIcon.setImageResource(tile.iconRes);
+            AllianceUtils.colorizeIconAtop(context, tileIcon, Settings.System.SETTINGS_MENU_ICON_COLOR, 0xff009688);
         } else {
             tileIcon.setImageDrawable(null);
             tileIcon.setBackground(null);
         }
 
         tileTextView.setText(tile.getTitle(res));
+        AllianceUtils.colorizeText(context,tileTextView,Settings.System.SETTINGS_LIST_TEXT_COLOR, 0xff000000);
+
 
         CharSequence summary = tile.getSummary(res);
         if (!TextUtils.isEmpty(summary)) {
             statusTextView.setVisibility(View.VISIBLE);
+
             statusTextView.setText(summary);
+
         } else {
             statusTextView.setVisibility(View.GONE);
         }
