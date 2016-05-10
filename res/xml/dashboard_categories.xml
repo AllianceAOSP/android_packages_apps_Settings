@@ -72,6 +72,24 @@
 
     </dashboard-category>
 
+        <!-- Alliance Control -->
+    <dashboard-category
+            android:id="@+id/alliance_settings"
+            
+            android:title="@string/header_category_alliance" >
+
+        <dashboard-tile
+            android:id="@+id/ac_settings"
+            android:icon="@drawable/ic_settings_ac"
+            android:title="@string/ac_settings_title">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.allianceteam.alliancecontrolaosp"
+                android:targetClass="com.allianceteam.alliancecontrolaosp.activities.HomeActivity" />
+        </dashboard-tile>
+
+    </dashboard-category>
+
     <!-- DEVICE -->
     <dashboard-category
             android:id="@+id/device_section"

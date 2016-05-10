@@ -17,5 +17,7 @@
 
 	<!-- Accept all files over Bluetooth OBEX -->
 	<string name="bluetooth_accept_all_files">Accept all file types</string>
-
+        <!-- Alliance Control -->
+	<string name="header_category_alliance">Alliance</string>
+	<string name="ac_settings_title">Alliance Control</string>
 </resources>
